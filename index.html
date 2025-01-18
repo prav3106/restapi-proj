@@ -1,276 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interactive Entity Display</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-evenly;
-      margin: 0;
-      padding: 20px;
-      background-image: url('https://static.vecteezy.com/system/resources/previews/010/839/386/original/aesthetic-minimal-cute-pastel-pink-wallpaper-illustration-perfect-for-wallpaper-backdrop-postcard-background-banner-vector.jpg'); /* Replace with your salon image URL */
-      background-size: cover;
-      background-position: center;
-      height: 100vh;
-      color: white;
-    }
-
-    /* Dim Overlay */
-    .dim-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5); /* Dim the background */
-      z-index: -1;
-    }
-
-    /* Caption Style */
-    .caption {
-      width: 100%;
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      color: #003366; /* Dark blue color */
-      margin-bottom: 30px;
-      z-index: 1;
-    }
-
-    /* Bubble Style */
-    .bubble {
-      background-color: #ff77a9;
-      color: white;
-      text-align: center;
-      border-radius: 50%;
-      width: 100px;
-      height: 100px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 20px;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .bubble:hover {
-      transform: scale(1.1);
-      box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15);
-    }
-
-    /* Entity Details Modal */
-    .details {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      max-width: 90%;
-      display: none;
-      color: black;
-    }
-
-    .details h3 {
-      margin-top: 0;
-    }
-
-    .details p {
-      margin: 5px 0;
-    }
-
-    .details button {
-      background-color: #ff77a9;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .details button:hover {
-      background-color: #ff5585;
-    }
-
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      display: none;
-    }
-  </style>
+    <title>UML Diagrams</title>
 </head>
-<body>
-  <!-- Dim Overlay for Background -->
-  <div class="dim-overlay"></div>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f0f0;">
 
-  <!-- Caption for the page -->
-  <div class="caption">Entities of my BEAUTI-FI project</div>
+    <div style="max-width: 1000px; margin: 0 auto; background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+        
+        <h1 style="color: #333; text-align: center; margin-bottom: 30px;">UML Diagrams</h1>
 
-  <!-- Bubble Entities -->
-  <div class="bubble" data-entity="User">User</div>
-  <div class="bubble" data-entity="Service">Service</div>
-  <div class="bubble" data-entity="Appointment">Appointment</div>
-  <div class="bubble" data-entity="Review">Review</div>
-  <div class="bubble" data-entity="Reward">Reward</div>
-  <div class="bubble" data-entity="Notification">Notification</div>
-  <div class="bubble" data-entity="Salon Location">Salon Location</div>
-  <div class="bubble" data-entity="Staff">Staff</div>
+        <!-- ER Diagram Section -->
+        <section style="margin-bottom: 40px;">
+            <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Entity Relationship Diagram</h2>
+            <div style="text-align: center;">
+                <!-- Add your ER diagram image here -->
+                <img src="/erdiagram.png" alt="ER Diagram" style="max-width: 100%; height: auto; margin: 20px 0;">
+            </div>
+        </section>
 
-  <!-- Entity Details Modal -->
-  <div class="overlay"></div>
-  <div class="details">
-    <h3 id="entity-title"></h3>
-    <div id="entity-details"></div>
-    <button onclick="closeDetails()">Close</button>
-  </div>
+        <!-- Class Diagram Section -->
+        <section style="margin-bottom: 40px;">
+            <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Class Diagram</h2>
+            <div style="text-align: center;">
+                <!-- Add your Class diagram image here -->
+                <img src="path/to/class-diagram.png" alt="Class Diagram" style="max-width: 100%; height: auto; margin: 20px 0;">
+            </div>
+        </section>
 
-  <script>
-    const entityData = {
-      "User": {
-        "Attributes": [
-          "UserID (Primary Key)",
-          "Name",
-          "Email",
-          "Phone Number",
-          "Password",
-          "Role (Customer/Salon Manager)",
-          "Date of Registration"
-        ],
-        "Relationships": [
-          "Linked to Appointments as the customer booking the service.",
-          "Linked to Reviews as the reviewer.",
-          "Linked to Rewards for earning and redeeming loyalty points."
-        ]
-      },
-      "Service": {
-        "Attributes": [
-          "ServiceID (Primary Key)",
-          "Service Name",
-          "Description",
-          "Price",
-          "Duration (in minutes)"
-        ],
-        "Relationships": [
-          "Linked to Appointments as the service being booked.",
-          "Linked to Reviews for feedback and ratings."
-        ]
-      },
-      "Appointment": {
-        "Attributes": [
-          "AppointmentID (Primary Key)",
-          "UserID (Foreign Key to User)",
-          "ServiceID (Foreign Key to Service)",
-          "Appointment Date",
-          "Appointment Time",
-          "Status (Scheduled/Completed/Canceled)"
-        ],
-        "Relationships": [
-          "Connected to User as the customer booking the appointment.",
-          "Connected to Service as the booked service."
-        ]
-      },
-      "Review": {
-        "Attributes": [
-          "ReviewID (Primary Key)",
-          "UserID (Foreign Key to User)",
-          "ServiceID (Foreign Key to Service)",
-          "Rating (1-5)",
-          "Feedback",
-          "Date of Submission"
-        ],
-        "Relationships": [
-          "Linked to User as the reviewer.",
-          "Linked to Service as the reviewed service."
-        ]
-      },
-      "Reward": {
-        "Attributes": [
-          "RewardID (Primary Key)",
-          "UserID (Foreign Key to User)",
-          "Points Earned",
-          "Points Redeemed",
-          "Reward Balance"
-        ],
-        "Relationships": [
-          "Linked to User as the recipient of rewards."
-        ]
-      },
-      "Notification": {
-        "Attributes": [
-          "NotificationID (Primary Key)",
-          "UserID (Foreign Key to User)",
-          "Notification Type (Appointment Reminder/Promotion)",
-          "Message",
-          "Date Sent",
-          "Read Status (Read/Unread)"
-        ],
-        "Relationships": [
-          "Linked to User for personalized notifications."
-        ]
-      },
-      "Salon Location": {
-        "Attributes": [
-          "LocationID (Primary Key)",
-          "Address",
-          "Contact Information",
-          "Working Hours"
-        ],
-        "Relationships": [
-          "Linked to Appointments to identify the service location.",
-          "Linked to Staff for scheduling and assignment."
-        ]
-      },
-      "Staff": {
-        "Attributes": [
-          "StaffID (Primary Key)",
-          "Name",
-          "Role (Hairdresser, Beautician, etc.)",
-          "Assigned LocationID (Foreign Key to Salon Location)",
-          "Schedule"
-        ],
-        "Relationships": [
-          "Connected to Salon Location for assignment.",
-          "Connected to Appointments as the service provider."
-        ]
-      }
-    };
+        <!-- Use Case Diagram Section -->
+        <section style="margin-bottom: 40px;">
+            <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Use Case Diagram</h2>
+            <div style="text-align: center;">
+                <!-- Add your Use Case diagram image here -->
+                <img src="/usecase.png" alt="Use Case Diagram" style="max-width: 100%; height: auto; margin: 20px 0;">
+            </div>
+        </section>
 
-    document.querySelectorAll('.bubble').forEach(bubble => {
-      bubble.addEventListener('click', () => {
-        const entity = bubble.getAttribute('data-entity');
-        const details = entityData[entity];
-        const title = document.getElementById('entity-title');
-        const detailsDiv = document.getElementById('entity-details');
+        <!-- Activity Diagram Section -->
+        <section style="margin-bottom: 40px;">
+            <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Activity Diagram</h2>
+            <div style="text-align: center;">
+                <!-- Add your Activity diagram image here -->
+                <img src="activity.png" alt="Activity Diagram" style="max-width: 100%; height: auto; margin: 20px 0;">
+            </div>
+        </section>
 
-        title.textContent = entity;
-        detailsDiv.innerHTML = `
-          <h4>Attributes:</h4>
-          <ul>${details.Attributes.map(attr => `<li>${attr}</li>`).join('')}</ul>
-          <h4>Relationships:</h4>
-          <ul>${details.Relationships.map(rel => `<li>${rel}</li>`).join('')}</ul>
-        `;
+        <!-- Sequence Diagram Section -->
+        <section style="margin-bottom: 40px;">
+            <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Sequence Diagram</h2>
+            <div style="text-align: center;">
+                <!-- Add your Sequence diagram image here -->
+                <img src="sequence.png" alt="Sequence Diagram" style="max-width: 100%; height: auto; margin: 20px 0;">
+            </div>
+        </section>
 
-        document.querySelector('.details').style.display = 'block';
-        document.querySelector('.overlay').style.display = 'block';
-      });
-    });
+    </div>
 
-    function closeDetails() {
-      document.querySelector('.details').style.display = 'none';
-      document.querySelector('.overlay').style.display = 'none';
-    }
-  </script>
 </body>
-</html>
+</html> 
